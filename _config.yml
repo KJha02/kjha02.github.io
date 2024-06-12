@@ -21,7 +21,7 @@ repository               : "KJha02/kjha02.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile.png"
+  avatar           : "profile.jpg"
   name             : "Kunal Jha"
   pronouns         : # example: "she/her"  
   bio              : "CS PhD Student interested in Multi-Agent systems, Theory-of-Mind Modeling, Continual Social Learning"
