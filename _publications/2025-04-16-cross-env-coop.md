@@ -18,7 +18,7 @@ From an early age, humans have the ability of robust cooperation with new people
 
 # Cross-environment Cooperation Enables Zero-shot Multi-agent Coordination
 
-[Kunal Jha](https://kjha02.github.io/), [Wilka Carvalho](https://cogscikid.com/), [Yancheng Liang](http://liangyancheng.com/), [Simon S. Du](https://simonshaoleidu.com/), [Max Kleiman-Weiner^](http://faculty.washington.edu/maxkw/), [Natasha Jaques^](https://natashajaques.ai)
+[Kunal Jha](https://kjha02.github.io/), [Wilka Carvalho](https://cogscikid.com/), [Yancheng Liang](http://liangyancheng.com/), [Simon S. Du](https://simonshaoleidu.com/), [Max Kleiman-Weiner](http://faculty.washington.edu/maxkw/)\*, [Natasha Jaques](https://natashajaques.ai)\*
 
 
 ### [Paper](https://google.com/), [Code (CEC)](https://github.com/KJha02/crossEnvCooperation), [Code (NiceWebRL)](https://github.com/wcarvalho/nicewebrl)
