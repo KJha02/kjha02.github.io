@@ -4,8 +4,8 @@ main:
     url: /files/kunal_cv.pdf
   
   - title: "Publications"
-    # url: /publications/
-    url: https://scholar.google.com/citations?user=F8ypNIcAAAAJ&hl=en&authuser=1
+    url: /publications/
+    # url: https://scholar.google.com/citations?user=F8ypNIcAAAAJ&hl=en&authuser=1
 
   # - title: "Talks"
   #   url: /talks/    
