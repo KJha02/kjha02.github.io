@@ -82,7 +82,7 @@ When paired with humans, we again find that CEC agents outperform population-bas
   </div>
 </div>
 
-## Big Takeaway
+# Big Takeaway
 
 **Environment diversity > Partner diversity:** Training across diverse tasks teaches agents how to cooperate, not just whom to cooperate with. This enables zero-shot coordination with novel partners in novel environments, a critical step toward human-compatible AI.
 
