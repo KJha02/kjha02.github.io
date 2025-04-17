@@ -1,7 +1,7 @@
 ---
 title: "Neural Amortized Inference for Nested Multi-agent Reasoning"
 collection: publications
-permalink: /publication/neural_amortize_inference
+# permalink: /publication/neural_amortize_inference
 excerpt: 'How can agents efficiently perform recursive Theory of Mind reasoning? We propose a neurosymbolic method which approximates the posterior belief distribution through bottom up neural network proposals, then performs top down Bayesian inference over the most likely beliefs.'
 date: 2024-02-20
 venue: 'AAAI'
