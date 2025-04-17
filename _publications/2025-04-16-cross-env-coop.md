@@ -12,14 +12,12 @@ venue: 'CogSci'
 From an early age, humans have the ability of robust cooperation with new people in unfamiliar environments. How can AI develop a similar ability to cooperate with novel people on novel problems? We propose Cross-Environment Cooperation (CEC), a framework for training just one policy to learn environment generalization as a means of improving its partner generalization.
 
 <div style="text-align:center">
-  <img src="/_publications/cecImages/intro_fig.png" alt="Cross-Environment Cooperation Framework" width="80%">
+  <img src="/images/cecImages/intro_fig.png" alt="Cross-Environment Cooperation Framework" width="80%">
 </div>
 
 # Cross-environment Cooperation Enables Zero-shot Multi-agent Coordination
 
 [Kunal Jha](https://kjha02.github.io/), [Wilka Carvalho](https://cogscikid.com/), [Yancheng Liang](http://liangyancheng.com/), [Simon S. Du](https://simonshaoleidu.com/), [Max Kleiman-Weiner](http://faculty.washington.edu/maxkw/), [Natasha Jaques](https://natashajaques.ai)
-
-University of Washington$$^{1}$, Harvard University$^{2}$
 
 
 ### [Paper](https://google.com/), [Code (CEC)](https://github.com/KJha02/crossEnvCooperation), [Code (NiceWebRL)](https://github.com/wcarvalho/nicewebrl)
