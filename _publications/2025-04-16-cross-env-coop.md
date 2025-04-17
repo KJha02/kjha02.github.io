@@ -18,7 +18,7 @@ From an early age, humans have the ability of robust cooperation with new people
 
 # Cross-environment Cooperation Enables Zero-shot Multi-agent Coordination
 
-[Kunal Jha](https://kjha02.github.io/), [Wilka Carvalho](https://cogscikid.com/), [Yancheng Liang](http://liangyancheng.com/), [Simon S. Du](https://simonshaoleidu.com/), [Max Kleiman-Weiner](http://faculty.washington.edu/maxkw/), [Natasha Jaques](https://natashajaques.ai)
+[Kunal Jha](https://kjha02.github.io/), [Wilka Carvalho](https://cogscikid.com/), [Yancheng Liang](http://liangyancheng.com/), [Simon S. Du](https://simonshaoleidu.com/), [Max Kleiman-Weiner*](http://faculty.washington.edu/maxkw/), [Natasha Jaques*](https://natashajaques.ai)
 
 
 ### [Paper](https://google.com/), [Code (CEC)](https://github.com/KJha02/crossEnvCooperation), [Code (NiceWebRL)](https://github.com/wcarvalho/nicewebrl)
@@ -30,25 +30,25 @@ Zero-shot coordination (ZSC), the ability to adapt to a new partner in a coopera
 
 ## Method
 
-How can AI agents learn to generalize cooperative strategies to new partners or environments? While population-based training (PBT) improves adaptability to novel partners on a single task, it fails when faced with even slight task variations, requiring retraining for each new environment. PBT focuses on partner diversity in a fixed environment, that lead to brittle representations of a task. For instance, in a simple toy experiment below, where agents are rewarded for going to opposing green squares, PBT methods may learn a strategy that works for a single level, such as "move up if your partner moves down, and down if they move up." However, this strategy fails when the green square is moved to the left or right by even a small amount.
+*How can AI agents learn to generalize cooperative strategies to new partners or environments?* While population-based training (PBT) improves adaptability to novel partners on a single task, it fails when faced with even slight task variations, requiring retraining for each new environment. PBT focuses on partner diversity in a fixed environment, that lead to brittle representations of a task. For instance, in a simple toy experiment below, where agents are rewarded for going to opposing green squares, PBT methods may learn a strategy that works for a single level, such as "move up if your partner moves down, and down if they move up." However, this strategy fails when the green square is moved to the left or right by even a small amount.
 
 <div style="text-align:center">
   <img src="/images/cecImages/toy_env_overview.png">
-  <p><em>Dual Destination Overview</em></p>
+  <p><em>The Dual Destination Problem.  In the fixed task (a), players start in opposite squares and must enter different green squares from each other to receive a reward. In the procedurally generated variation (b), the initial positions of the green goal cells and agents are randomized.</em></p>
 </div>
 
 In contrast, we propose **Cross-Environment Cooperation (CEC)**, a framework for training an agent to cooperate in self-play on procedurally generated environments. By exposing agents to diverse coordination challenges, they learn general norms (e.g., role allocation, collision avoidance) instead of memorizing fixed strategies. In our "Dual Destination" example above, this leads to learning a better representation of the true task of moving to separate green squares that can transfer to new environments and partners, instead of memorizing a strategy that works for a single level.
 
 <div style="text-align:center">
   <img src="/images/cecImages/bar_plot_toy.png">
-  <p><em>Cross-Play ZSC Results from the Dual Destination Problem</em></p>
+  <p><em>Evaluation of IPPO and FCP baselines on the Fixed and Procedurally generated versions of the Dual Destination problem (error bars show the standard error of the mean). CEC generalizes better in both cases (p<0.001 for t-tests comparing CEC to both FCP and IPPO)</em></p>
 </div>
 
 ## Experiments
 
 <div style="text-align:center">
   <img src="/images/cecImages/ogToProcOvercooked.png">
-  <p><em>Overcooked: Human-Designed vs Procedurally Generated Environments</em></p>
+  <p><em>(Top) Five original Overcooked layouts. Left to right: *Asymmetric Advantages, Coordination Ring, Counter Circuit, Cramped Room, Forced Coordination*. (Bottom) Sample from the billions of solvable, diverse Overcooked tasks created by our procedural environment generator.</em></p>
 </div>
 
 We evaluate CEC on Overcooked, a collaborative cooking simulator where humans and AIs work together to deliver cooked items to a goal. Agents are tested on both held-out human-designed layouts and entirely novel procedural environments, paired with AI and human partners. Unlike previous work on Overcooked which studied only 5 layouts, our procedural generator creates billions of solvable environments, allowing us to study how general cooperative skills transfer to new environments and partners at an unprecedented scale.
@@ -59,14 +59,14 @@ We find that CEC outperforms competitive baselines quantitatively and qualitativ
 
 <div style="text-align:center">
   <img src="/images/cecImages/partner_env_diverse.png">
-  <p><em>ZSC Results from Overcooked. CEC agents achieve significantly higher reward with novel partners on novel environments than PBT methods which have seen the same environment during training.</em></p>
+  <p><em>Evaluation of baselines on (left) 5 original Overcooked layouts vs. (right) 100 procedurally generated held-out layouts (standard error bars). Single-task methods and PBT struggle in both settings, while CEC agents generalize effectively. Finetuning CEC on a single grid improves XP performance on original layouts (outperforming FCP and IPPO; p<0.01, t-test) but reduces generalization on novel layouts. CEC significantly surpasses all baselines in procedural generalization tasks (p<0.0001, t-test).</em></p>
 </div>
 
 In the Ad-hoc Teamplay setting, which is where we have cooperator agents trained with different algorithms collaborate with each other, we use **empirical game theory analysis** to show that CEC agents are selected for as a dominant strategy across a population of agents. 
 
 <div style="text-align:center">
   <img src="/images/cecImages/stackedEvo.png">
-  <p><em>Evolutionary Game Theory Analysis on Handcrafted vs Procedurally Generated Environments. CEC agents are selected for as a dominant strategy across a population of agents.</em></p>
+  <p><em>Empirical game-theoretic evaluation of cross-algorithm play on the (a) five original and (b) 100 procedurally generated  Overcooked tasks. Arrows show the gradient of the replicator dynamic on the cross-algorithm meta-game. Vectors flow towards CEC and CEC-Finetune indicate they are likely equilibria.</em></p>
 </div>
 
 When paired with humans, we again find that CEC agents outperform population-based methods, and are rated qualitatively the best by human participants to collaborate with. We took a closer look and found that CEC agent collide with humans less than other methods, and this **increased adaptability reflects a general norm for cooperation** learned to facillitate better coordination across a vast number of environments.
@@ -74,11 +74,11 @@ When paired with humans, we again find that CEC agents outperform population-bas
 <div style="display: flex; flex-direction: row; justify-content: space-between; margin-bottom: 20px;">
   <div style="flex: 1; margin-right: 10px;">
     <img src="/images/cecImages/combined_metrics_avg.png">
-    <p style="text-align: center; font-size: 0.9em;"><strong>Figure:</strong> Human-AI collaboration results. (Top) Rewards received by different methods collaborating with humans. (Bottom) Average human qualitative ratings of different methods.</p>
+    <p style="text-align: center; font-size: 0.9em;"><strong>Figure:</strong> (Top) Average success rates of algorithms cooperating with ad-hoc human partners on \textit{Counter Circuit} and \textit{Coordination Ring}, with standard error bars. CEC outperforms PBT methods and approaches E3T's performance, despite only training on diverse layouts. Using a 2-sided t-test, CEC significantly outperforms FCP (p<0.001, t-test). (Bottom) Human ratings of algorithms' cooperative ability across 7 metrics, averaged over *Counter Circuit* and *Coordination Ring* evaluations, with standard error bars. CEC and CEC-Finetune are preferred partners despite lower rewards. CEC-Finetune significantly outperforms FCP (p<0.01, t-test) and E3T (p<0.01, t-test).</p>
   </div>
   <div style="flex: 1; margin-left: 10px;">
     <img src="/images/cecImages/hAI_collision_avg.png">
-    <p style="text-align: center; font-size: 0.9em;"><strong>Figure:</strong> Average number of collisions between humans and AIs for different methods. Humans rated CEC agents as more adaptive, and the lower collision results reflect that.</p>
+    <p style="text-align: center; font-size: 0.9em;"><strong>Figure:</strong> Average number of collisions between humans and AI partners on *Counter Circuit* and *Coordination Ring*, with standard error bars shown. CEC achieves the lowest average collision rate.</p>
   </div>
 </div>
 
