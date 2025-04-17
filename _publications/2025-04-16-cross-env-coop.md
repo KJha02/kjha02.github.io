@@ -41,7 +41,7 @@ In contrast, we propose **Cross-Environment Cooperation (CEC)**, a framework for
 
 <div style="text-align:center">
   <img src="/images/cecImages/bar_plot_toy.png">
-  <p><em>Performance comparison on Dual Destination problem</em></p>
+  <p><em>ZSC Performance comparison on Dual Destination problem</em></p>
 </div>
 
 ## Experiments
@@ -59,14 +59,14 @@ We find that CEC outperforms competitive baselines quantitatively and qualitativ
 
 <div style="text-align:center">
   <img src="/images/cecImages/partner_env_diverse.png">
-  <p><em>Performance on original layouts (left) vs. procedural environments (right)</em></p>
+  <p><em>ZSCPerformance on original layouts (left) vs. procedural environments (right)</em></p>
 </div>
 
 In the Ad-hoc Teamplay setting, which is where we have cooperator agents trained with different algorithms collaborate with each other, we use **empirical game theory analysis** to show that CEC agents are selected for as a dominant strategy across a population of agents. 
 
 <div style="text-align:center">
   <img src="/images/cecImages/stackedEvo.png">
-  <p><em>Game-theoretic analysis showing CEC as dominant strategy</em></p>
+  <p><em>Game-theoretic analysis showing CEC as dominant strategy for Ad-hoc Teamplay</em></p>
 </div>
 
 When paired with humans, we again find that CEC agents outperform population-based methods, and are rated qualitatively the best by human participants to collaborate with. We took a closer look and found that CEC agent collide with humans less than other methods, and this **increased adaptability reflects a general norm for cooperation** learned to facillitate better coordination across a vast number of environments.
@@ -74,11 +74,11 @@ When paired with humans, we again find that CEC agents outperform population-bas
 <div style="display: flex; flex-direction: row; justify-content: space-between; margin-bottom: 20px;">
   <div style="flex: 1; margin-right: 10px;">
     <img src="/images/cecImages/combined_metrics_avg.png">
-    <p style="text-align: center; font-size: 0.9em;"><strong>Figure:</strong> Human-AI success rates (top) and human preference ratings (bottom)</p>
+    <p style="text-align: center; font-size: 0.9em;"><strong>Figure:</strong> Human-AI success rates (top) and human qualitative preference ratings (bottom)</p>
   </div>
   <div style="flex: 1; margin-left: 10px;">
     <img src="/images/cecImages/hAI_collision_avg.png">
-    <p style="text-align: center; font-size: 0.9em;"><strong>Figure:</strong> Human-AI collision rates</p>
+    <p style="text-align: center; font-size: 0.9em;"><strong>Figure:</strong> Human-AI collision rates, lower indicates better adaptability</p>
   </div>
 </div>
 
