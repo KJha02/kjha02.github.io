@@ -5,7 +5,7 @@ permalink: /publication/cross-env-coop
 excerpt: 'How can AI develop the ability to cooperate with novel people on novel problems? We show AI learning to cooperate in "self-play" with one partner on many environments helps agents meta-learn to cooperate with humans and other AI on problems they have never seen before.'
 date: 2025-04-16
 venue: 'CogSci'
-# paperurl: 'http://academicpages.github.io/files/paper2.pdf'
+paperurl: 'https://arxiv.org/abs/2504.12714'
 # citation: 'Your Name, You. (2010). &quot;Paper Title Number 2.&quot; <i>Journal 1</i>. 1(2).'
 ---
 
@@ -86,4 +86,4 @@ When paired with humans, we again find that CEC agents outperform population-bas
 
 **Environment diversity > Partner diversity:** Training across diverse tasks teaches agents how to cooperate, not just whom to cooperate with. This enables zero-shot coordination with novel partners in novel environments, a critical step toward human-compatible AI.
 
-Interested in learning more? Check out our [paper](https://google.com/) and [code](https://github.com/KJha02/crossEnvCooperation)!!!
+Interested in learning more? Check out our [paper](https://arxiv.org/abs/2504.12714) and [code](https://github.com/KJha02/crossEnvCooperation)!!!
