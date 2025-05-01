@@ -4,7 +4,7 @@ collection: publications
 permalink: /publication/cross-env-coop
 excerpt: 'How can AI develop the ability to cooperate with novel people on novel problems? We show AI learning to cooperate in "self-play" with one partner on many environments helps agents meta-learn to cooperate with humans and other AI on problems they have never seen before.'
 date: 2025-04-16
-venue: 'CogSci'
+venue: 'Spotlight Paper @ ICML, Presenting abstract @ CogSci'
 paperurl: 'https://arxiv.org/abs/2504.12714'
 # citation: 'Your Name, You. (2010). &quot;Paper Title Number 2.&quot; <i>Journal 1</i>. 1(2).'
 ---
