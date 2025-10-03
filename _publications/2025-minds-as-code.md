@@ -20,7 +20,7 @@ Humans can effortlessly predict the actions of others, a core skill for social c
 [Kunal Jha](https://kjha02.github.io/), [Aydan Yuenan Huang](https://scai.cs.jhu.edu/members/aydan-huang.html), [Eric Ye](https://www.linkedin.com/in/eric-ye-384a77238), , [Natasha Jaques](https://natashajaques.ai)\*, [Max Kleiman-Weiner](http://faculty.washington.edu/maxkw/)\*
 
 
-### [Paper](https://arxiv.org/abs/2504.12714), [Code](https://github.com/KJha02/mindsAsCode)
+### [Paper](http://arxiv.org/abs/2510.01272), [Code](https://github.com/KJha02/mindsAsCode)
 
 ## Abstract
 
@@ -95,4 +95,4 @@ Just as important as accuracy, we find ROTE is highly efficient for long-horizon
 **Framing behavior prediction as a program synthesis problem is an accurate, scalable, and efficient path to human-compatible AI**. This approach allows multi-agent systems to rapidly and accurately anticipate others' actions using compact, interpretable logic, leading to more effective collaboration.
 
 
-Interested in learning more? Check out our [paper](https://arxiv.org/abs/2504.12714) and [code](https://github.com/KJha02/mindsAsCode)!!!
+Interested in learning more? Check out our [paper](http://arxiv.org/abs/2510.01272) and [code](https://github.com/KJha02/mindsAsCode)!!!
