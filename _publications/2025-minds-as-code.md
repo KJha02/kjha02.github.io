@@ -2,7 +2,7 @@
 title: "Modeling Others' Minds as Code"
 collection: publications
 permalink: /publication/minds-as-code
-excerpt: 'How can AI quickly and accurately predict the behaviors of others? We show an AI which uses Large Language Models to synthesize agent behavior into Python programs, then Bayesian Inference to reason about its uncertainty can effectively and efficiently predict human actions.'
+excerpt: 'How can AI quickly and accurately predict the behaviors of others? We show an AI which uses Large Language Models to synthesize agent behavior into Python programs, then Bayesian Inference to reason about its uncertainty, can effectively and efficiently predict human actions.'
 date: 2026-09-29
 venue: 'Under review @ ICLR 2026, Accepted paper @ NeurIPS 2025 LAW Workshop'
 # citation: 'Your Name, You. (2010). &quot;Paper Title Number 2.&quot; <i>Journal 1</i>. 1(2).'
@@ -20,7 +20,7 @@ Humans can effortlessly predict the actions of others, a core skill for social c
 [Kunal Jha](https://kjha02.github.io/), [Aydan Yuenan Huang](https://scai.cs.jhu.edu/members/aydan-huang.html), [Eric Ye](https://www.linkedin.com/in/eric-ye-384a77238), , [Natasha Jaques](https://natashajaques.ai)\*, [Max Kleiman-Weiner](http://faculty.washington.edu/maxkw/)\*
 
 
-### [Paper](http://arxiv.org/abs/2510.01272), [Code](https://github.com/KJha02/mindsAsCode)
+### [Paper](https://arxiv.org/abs/2510.01272), [Code](https://github.com/KJha02/mindsAsCode)
 
 ## Abstract
 
@@ -71,21 +71,21 @@ A key advantage was ROTE's generalization ability. Programs inferred from a traj
 In the complex *Partnr* simulator, ROTE significantly outperformed all baselines for high-level action prediction. This is a critical result, demonstrating that the program synthesis approach scales effectively to realistic, partially observable domains that require long-horizon planning.
 
 <div style="text-align:center">
-<img src="/images/minds_as_code/partnrExample.png" alt="Figure 5a: Action prediction accuracy in Partnr." style="width: 100%; max-width: 400px; height: auto;">
+<img src="/images/minds_as_code/partnrExample.png">
 <p><em>(a) Prediction accuracy in the large-scale, partially observable Partnr environment. ROTE demonstrated a superior ability to anticipate the behavior of goal-directed, LLM-based agents, with a two-sided t-test showing ROTE significantly outperformed all other models. (b) The pseudocode example illustrates how ROTE's inferred programs capture complex task logic using conditionals and state-tracking.</em></p>
 </div>
 
 What explains this performance gap? ROTE demonstrated a superior ability to manage intricate, compositional tasks in *Partnr*, such as cleaning and interacting with multi-state objects (e.g., turning items on/off). Baselines struggled significantly with these complex interactions, succeeding primarily on basic navigation. This confirms that ROTE's programmatic logic is better suited to capturing deep conditional dependencies required for complex routines. 
 
 <div style="text-align:center">
-<img src="/images/minds_as_code/llama_cluster.png" alt="Figure 10: Task-specific generalization in Partnr." style="width: 100%; max-width: 600px; height: auto;">
+<img src="/images/minds_as_code/llama_cluster.png">
 <p><em>Task-specific generalization in Partnr. While baselines like AutoToM and Behavior Cloning perform adequately on tasks involving object manipulation, they struggle with more complex interactions. ROTE, however, maintains performance on these more intricate problems.</em></p>
 </div>
 
 Just as important as accuracy, we find ROTE is highly efficient for long-horizon predictions. Although initial program generation incurs a cost, once the programs are inferred, they can be executed rapidly for all subsequent steps. This makes ROTE orders of magnitude more efficient than other LLM-based methods for multi-step prediction, as it avoids the massive re-computation cost associated with token generation at every timestep. 
 
 <div style="text-align:center">
-<img src="/images/minds_as_code/prediction_time.png" alt="Figure 6: Total prediction time in Construction." style="width: 100%; max-width: 400px; height: auto;">
+<img src="/images/minds_as_code/prediction_time.png">
 <p><em>Total multi-step prediction time in Construction. Despite being slower than BC and Naive LLM prompting in the single-step prediction case, ROTE's programmatic representations enable its multi-step compute cost to scale orders of magnitude more efficiently than other approaches, making it better suited for long-horizon settings than other approaches for predicting individual behavior.</em></p>
 </div>
 
@@ -95,4 +95,4 @@ Just as important as accuracy, we find ROTE is highly efficient for long-horizon
 **Framing behavior prediction as a program synthesis problem is an accurate, scalable, and efficient path to human-compatible AI**. This approach allows multi-agent systems to rapidly and accurately anticipate others' actions using compact, interpretable logic, leading to more effective collaboration.
 
 
-Interested in learning more? Check out our [paper](http://arxiv.org/abs/2510.01272) and [code](https://github.com/KJha02/mindsAsCode)!!!
+Interested in learning more? Check out our [paper](https://arxiv.org/abs/2510.01272) and [code](https://github.com/KJha02/mindsAsCode)!!!
