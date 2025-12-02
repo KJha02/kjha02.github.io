@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-I am a rising second year Ph.D. student in Computer Science and Engineering at the University of Washington, advised by [Natasha Jaques](https://natashajaques.ai) and [Max Kleiman-Weiner](https://www.mit.edu/~maxkw/). I'm broadly interested in algorithms for learning, interaction, and memory that give rise to artificial and natural intelligence. Specifically, my research tries to tackle some of the key challenges of understanding social intelligence in machines and humans, such as:
+I am a second year Ph.D. student in Computer Science and Engineering at the University of Washington, advised by [Natasha Jaques](https://natashajaques.ai) and [Max Kleiman-Weiner](https://www.mit.edu/~maxkw/). I'm broadly interested in algorithms for learning, interaction, and memory that give rise to artificial and natural intelligence. Specifically, my research tries to tackle some of the key challenges of understanding social intelligence in machines and humans, such as:
 
   - **Social Learning**: How can we efficiently and continuously learn skills from others that guide our exploration and help us accomplish novel tasks quicker? How can we use social interactions to constrain our search over valid causal models of the world? How do communities transmit knowledge to each other within a lifetime and over the span of several generations to increase individual and group prosperity?
   - **Theory-of-Mind**: How do we come to infer the content of other peoples' minds rapidly? Can we build machines that have the ability to recursively reason about the hidden mental states of others? How can we accurately estimate our uncertainty about the beliefs and desires of others in a way that allows us to collaborate and communicate effectively?
