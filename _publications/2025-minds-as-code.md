@@ -4,7 +4,7 @@ collection: publications
 permalink: /publication/minds-as-code
 excerpt: 'How can AI quickly and accurately predict the behaviors of others? We show an AI which uses Large Language Models to synthesize agent behavior into Python programs, then Bayesian Inference to reason about its uncertainty, can effectively and efficiently predict human actions.'
 date: 2026-09-29
-venue: 'Under review @ ICLR 2026, Accepted paper @ NeurIPS 2025 LAW Workshop'
+venue: 'Under review @ ICLR 2026, Best Paper award @ NeurIPS 2025 LAW Workshop'
 # citation: 'Your Name, You. (2010). &quot;Paper Title Number 2.&quot; <i>Journal 1</i>. 1(2).'
 ---
 
