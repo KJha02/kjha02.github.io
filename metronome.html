@@ -3,15 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Gap Click">
+    <link rel="apple-touch-icon" href="icon.png"> 
+    
     <title>Gap Click Trainer</title>
     <style>
         :root {
             /* Wizard of Oz Palette */
             --bg-color: #f4f1ea;       /* Soft Cream Background */
-            --emerald: #4CAF50;        /* Emerald Green (Left Slider/Banner) */
-            --gold: #FBC02D;           /* Yellow Brick Road (Track/Accent/Shadow/Thumb) */
-            --pink: #F50057;           /* Glinda Pink (Right Slider/Ball/Stop) */
-            --charcoal: #1a1a1a;       /* Storybook Text/Accents/Outlines */
+            --emerald: #4CAF50;        /* Emerald Green */
+            --gold: #FBC02D;           /* Yellow Brick Road */
+            --pink: #F50057;           /* Glinda Pink */
+            --charcoal: #1a1a1a;       /* Storybook Text */
             --parchment: #fffbf0;      /* Input background */
         }
 
@@ -25,13 +30,15 @@
             align-items: center;
             min-height: 100vh;
             touch-action: manipulation;
+            /* Prevent bouncing scroll on iOS */
+            overscroll-behavior: none;
         }
 
         /* --- VISUALIZER AREA --- */
         #visual-container {
             width: 100%;
             height: 120px;
-            background-color: var(--emerald); /* Green Banner */
+            background-color: var(--emerald);
             position: relative;
             overflow: hidden;
             margin-bottom: 10px;
@@ -39,7 +46,6 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        /* The Pendulum Track - GOLD */
         .track {
             width: 40%;
             height: 4px;
@@ -51,7 +57,6 @@
             box-shadow: 0 1px 4px rgba(0,0,0,0.2);
         }
 
-        /* The Ball (Pink Default) */
         #pendulum-ball {
             width: 32px;
             height: 32px;
@@ -60,14 +65,13 @@
             border: 2px solid var(--parchment);
             position: absolute;
             top: calc(60% - 16px);
-            left: 30%; /* Start Left */
+            left: 30%;
             transform: translateX(-50%);
             box-shadow: 0 2px 5px rgba(0,0,0,0.3);
             will-change: left, background-color, transform;
             transition: background-color 0.1s, transform 0.1s; 
         }
 
-        /* Class to turn ball Gold on measure start */
         .ball-accent {
             background-color: var(--gold) !important;
             transform: translateX(-50%) scale(1.3) !important;
@@ -75,7 +79,6 @@
             box-shadow: 0 0 15px var(--gold) !important;
         }
 
-        /* --- BEAT COUNTER --- */
         #beat-counter {
             position: absolute;
             top: 15px;
@@ -103,7 +106,6 @@
             border: 2px solid var(--emerald);
         }
 
-        /* --- TITLE (Charcoal, No Shadow) --- */
         h1 { 
             margin-top: 0; 
             margin-bottom: 15px;
@@ -140,7 +142,7 @@
             font-weight: bold;
         }
 
-        /* TAP BUTTON STYLE */
+        /* TAP BUTTON */
         #tap-btn {
             background-color: var(--parchment);
             border: 2px solid var(--charcoal);
@@ -162,30 +164,38 @@
             transform: scale(0.95);
         }
         
-        /* Inputs */
-        select, input[type="number"] {
-            background: #fff;
+        /* --- SCROLL WHEEL INPUTS (SELECTS) --- */
+        /* This styling makes dropdowns look like clickable buttons */
+        select {
+            appearance: none; /* Remove default arrow */
+            -webkit-appearance: none;
+            background-color: #fff;
             color: var(--charcoal);
             border: 2px solid var(--charcoal);
-            padding: 8px;
+            padding: 8px 15px;
             border-radius: 8px;
-            font-size: 1rem;
-            width: 80px;
+            font-size: 1.1rem;
             text-align: center;
+            text-align-last: center; /* Centers text in dropdown */
             font-weight: bold;
             font-family: Georgia, serif;
             transition: border-color 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            min-width: 70px;
+            background-image: none; /* Ensure no arrow */
         }
 
-        select:focus, input[type="number"]:focus {
+        select:focus {
             outline: none;
             border-color: var(--pink);
             box-shadow: 0 0 8px rgba(245, 0, 87, 0.3);
         }
 
-        select { width: 150px; text-align: left; }
+        /* Specific widths */
+        .wide-select { width: 150px; }
+        .narrow-select { width: 80px; }
 
-        /* --- CUSTOM GRADIENT SLIDER --- */
+        /* --- SLIDER --- */
         input[type=range] {
             -webkit-appearance: none; 
             width: 100%;
@@ -193,28 +203,25 @@
             height: 10px;
             border-radius: 5px;
             border: 1px solid var(--charcoal);
-            /* Background handled by JS for Gradient */
             background: linear-gradient(to right, var(--emerald) 0%, var(--emerald) 50%, var(--pink) 50%, var(--pink) 100%);
             outline: none;
         }
 
-        /* Chrome/Safari/Edge Thumb - NOW GOLD WITH BLACK OUTLINE */
         input[type=range]::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
             height: 26px;
             width: 26px;
             border-radius: 50%;
-            background: var(--gold); /* Gold Background */
-            border: 2px solid var(--charcoal); /* Charcoal Outline */
+            background: var(--gold);
+            border: 2px solid var(--charcoal);
             cursor: pointer;
             box-shadow: 0 2px 4px rgba(0,0,0,0.3);
             position: relative; 
             top: 50%; 
             transform: translateY(-50%); 
         }
-        
-        /* Important: Webkit Runnable Track must be transparent so input background shows */
+
         input[type=range]::-webkit-slider-runnable-track {
             width: 100%;
             height: 100%;
@@ -223,13 +230,12 @@
             cursor: pointer;
         }
 
-        /* Firefox Thumb - NOW GOLD WITH BLACK OUTLINE */
         input[type=range]::-moz-range-thumb {
             height: 26px;
             width: 26px;
-            border: 2px solid var(--charcoal); /* Charcoal Outline */
+            border: 2px solid var(--charcoal);
             border-radius: 50%;
-            background: var(--gold); /* Gold Background */
+            background: var(--gold);
             cursor: pointer;
             box-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
@@ -248,7 +254,6 @@
             accent-color: var(--pink); 
         }
         
-        /* Play Button (Black/Gold Shadow) */
         #play-btn {
             width: 100%;
             padding: 15px;
@@ -301,7 +306,7 @@
                     <label>Tempo</label>
                     <button id="tap-btn">TAP</button>
                 </div>
-                <input type="number" id="bpm-input" value="120" min="30" max="300">
+                <select id="bpm-select" class="narrow-select"></select>
             </div>
             <input type="range" id="bpm-slider" min="30" max="300" value="120">
         </div>
@@ -310,7 +315,7 @@
             <div class="row">
                 <label>Time Sig</label>
                 <div style="display:flex; gap:5px;">
-                    <input type="number" id="sig-num" value="4" min="1" max="32" style="width:50px;">
+                    <select id="sig-num" class="narrow-select" style="width: 60px;"></select>
                     <span style="padding-top:8px; font-weight:bold;">/</span>
                     <select id="sig-den" style="width:60px;">
                         <option value="4">4</option>
@@ -320,7 +325,7 @@
                 </div>
             </div>
             <div class="toggle-row">
-                <label for="accent-toggle">Accent New Bar?</label>
+                <label for="accent-toggle">Accent (High Pitch)?</label>
                 <input type="checkbox" id="accent-toggle" checked>
             </div>
         </div>
@@ -328,7 +333,7 @@
         <div class="control-group">
             <div class="row">
                 <label>Subdivision</label>
-                <select id="subdivision">
+                <select id="subdivision" class="wide-select">
                     <option value="1">Whole Notes</option>
                     <option value="2">Half Notes</option>
                     <option value="3">Half Note Triplets</option>
@@ -345,11 +350,11 @@
         <div class="control-group">
             <div class="row">
                 <label>Play (Bars)</label>
-                <input type="number" id="bars-play" value="1" min="1">
+                <select id="bars-play" class="narrow-select"></select>
             </div>
             <div class="row">
                 <label>Silent (Bars)</label>
-                <input type="number" id="bars-gap" value="1" min="0">
+                <select id="bars-gap" class="narrow-select"></select>
             </div>
             <div class="toggle-row">
                 <label for="hide-visuals">Hide Ball during Gap?</label>
@@ -366,14 +371,11 @@
     let audioCtx = null;
     let isPlaying = false;
     let startTime = 0; 
-    
-    // Scheduler Logic
     let lookahead = 25.0; 
     let scheduleAheadTime = 0.1; 
     let nextNoteTime = 0.0; 
     let timerID = null;
 
-    // State Tracking
     let currentBeatInBar = 0; 
     let currentBarCount = 0; 
     let notesInQueue = []; 
@@ -384,63 +386,76 @@
     const visualContainer = document.getElementById('visual-container');
     const ball = document.getElementById('pendulum-ball');
     const beatCounter = document.getElementById('beat-counter');
-    const bpmInput = document.getElementById('bpm-input');
     const bpmSlider = document.getElementById('bpm-slider');
     const statusText = document.getElementById('status-text');
+    
+    // Inputs (Now Selects)
+    const bpmSelect = document.getElementById('bpm-select');
+    const sigNumSelect = document.getElementById('sig-num');
+    const barsPlaySelect = document.getElementById('bars-play');
+    const barsGapSelect = document.getElementById('bars-gap');
+
+    // --- HELPER: Populate Select Options ---
+    function populateSelect(element, start, end, selected) {
+        for (let i = start; i <= end; i++) {
+            let option = document.createElement("option");
+            option.value = i;
+            option.text = i;
+            if (i === selected) option.selected = true;
+            element.appendChild(option);
+        }
+    }
+
+    // Populate Dynamic Dropdowns on Load
+    populateSelect(bpmSelect, 30, 300, 120); // Tempo 30-300
+    populateSelect(sigNumSelect, 1, 32, 4); // Time Sig 1-32
+    populateSelect(barsPlaySelect, 1, 64, 1); // Play Bars 1-64
+    populateSelect(barsGapSelect, 0, 64, 1); // Gap Bars 0-64
 
     // --- SLIDER GRADIENT LOGIC ---
     function updateSliderColor() {
         const min = parseInt(bpmSlider.min);
         const max = parseInt(bpmSlider.max);
         const val = parseInt(bpmSlider.value);
-        
-        // Calculate percentage
         const percent = ((val - min) / (max - min)) * 100;
-        
-        // Update linear gradient: Green up to percent, Pink after
         bpmSlider.style.background = `linear-gradient(to right, #4CAF50 0%, #4CAF50 ${percent}%, #F50057 ${percent}%, #F50057 100%)`;
     }
 
-    // Initialize color on load
-    updateSliderColor();
-
+    // Sync Slider <-> Select
     bpmSlider.addEventListener('input', (e) => {
-        bpmInput.value = e.target.value;
+        bpmSelect.value = e.target.value;
         updateSliderColor();
     });
 
-    bpmInput.addEventListener('input', (e) => {
+    bpmSelect.addEventListener('change', (e) => {
         bpmSlider.value = e.target.value;
         updateSliderColor();
     });
+    
+    // Initialize slider color
+    updateSliderColor();
 
     // --- TAP TEMPO LOGIC ---
     let tapTimes = [];
     tapBtn.addEventListener('click', (e) => {
         e.preventDefault();
         const now = Date.now();
-
-        if (tapTimes.length > 0 && now - tapTimes[tapTimes.length - 1] > 2000) {
-            tapTimes = [];
-        }
-
+        if (tapTimes.length > 0 && now - tapTimes[tapTimes.length - 1] > 2000) tapTimes = [];
         tapTimes.push(now);
         if (tapTimes.length > 5) tapTimes.shift();
 
         if (tapTimes.length > 1) {
             let intervals = [];
-            for (let i = 1; i < tapTimes.length; i++) {
-                intervals.push(tapTimes[i] - tapTimes[i-1]);
-            }
+            for (let i = 1; i < tapTimes.length; i++) intervals.push(tapTimes[i] - tapTimes[i-1]);
             let avgInterval = intervals.reduce((a, b) => a + b) / intervals.length;
             let bpm = Math.round(60000 / avgInterval);
 
             if (bpm < 30) bpm = 30;
             if (bpm > 300) bpm = 300;
 
-            bpmInput.value = bpm;
+            bpmSelect.value = bpm;
             bpmSlider.value = bpm;
-            updateSliderColor(); // Update Slider Visuals
+            updateSliderColor(); 
         }
         
         tapBtn.classList.add('tapped');
@@ -455,9 +470,9 @@
     // --- Core Audio Logic ---
 
     function nextNote() {
-        const bpm = parseFloat(bpmInput.value);
+        const bpm = parseFloat(bpmSelect.value);
         const subdiv = parseInt(document.getElementById('subdivision').value);
-        const sigNum = parseInt(document.getElementById('sig-num').value);
+        const sigNum = parseInt(sigNumSelect.value);
         const sigDen = parseInt(document.getElementById('sig-den').value);
 
         const secondsPerQuarter = 60.0 / bpm;
@@ -475,8 +490,8 @@
     }
 
     function scheduleNote(beatNumber, time, barNum) {
-        const barsPlay = parseInt(document.getElementById('bars-play').value);
-        const barsGap = parseInt(document.getElementById('bars-gap').value);
+        const barsPlay = parseInt(barsPlaySelect.value);
+        const barsGap = parseInt(barsGapSelect.value);
         const totalCycle = barsPlay + barsGap;
         const currentCyclePos = barNum % totalCycle;
         const isGap = currentCyclePos >= barsPlay;
@@ -488,7 +503,7 @@
             isSilent: isGap 
         });
 
-        if (isGap) return; // Silent
+        if (isGap) return; 
 
         const osc = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
@@ -532,7 +547,7 @@
             elapsed = 0;
             ball.style.left = "30%";
         } else {
-            const bpm = parseFloat(bpmInput.value);
+            const bpm = parseFloat(bpmSelect.value);
             const secondsPerQuarter = 60.0 / bpm;
             const totalBeats = elapsed / secondsPerQuarter;
             const phase = totalBeats % 1; 
