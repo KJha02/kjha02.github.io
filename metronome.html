@@ -30,20 +30,23 @@
             align-items: center;
             min-height: 100vh;
             touch-action: manipulation;
-            /* Prevent bouncing scroll on iOS */
             overscroll-behavior: none;
         }
 
-        /* --- VISUALIZER AREA --- */
+        /* --- VISUALIZER AREA (Moved inside container) --- */
         #visual-container {
             width: 100%;
             height: 120px;
-            background-color: var(--emerald);
+            background-color: var(--emerald); 
             position: relative;
             overflow: hidden;
-            margin-bottom: 10px;
-            border-bottom: 4px solid var(--charcoal);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            
+            /* New Styling for inside the box */
+            margin-top: 20px;       /* Space above it */
+            margin-bottom: 20px;    /* Space below it (before Start button) */
+            border: 3px solid var(--charcoal); /* Border to look like a screen */
+            border-radius: 8px;     /* Rounded corners */
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.3); /* Inner shadow for depth */
         }
 
         .track {
@@ -102,7 +105,8 @@
             color: var(--charcoal);
             border-radius: 16px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
+            margin-top: 20px;
+            margin-bottom: 40px;
             border: 2px solid var(--emerald);
         }
 
@@ -164,10 +168,9 @@
             transform: scale(0.95);
         }
         
-        /* --- SCROLL WHEEL INPUTS (SELECTS) --- */
-        /* This styling makes dropdowns look like clickable buttons */
+        /* Select Inputs */
         select {
-            appearance: none; /* Remove default arrow */
+            appearance: none;
             -webkit-appearance: none;
             background-color: #fff;
             color: var(--charcoal);
@@ -176,13 +179,13 @@
             border-radius: 8px;
             font-size: 1.1rem;
             text-align: center;
-            text-align-last: center; /* Centers text in dropdown */
+            text-align-last: center; 
             font-weight: bold;
             font-family: Georgia, serif;
             transition: border-color 0.2s, box-shadow 0.2s;
             cursor: pointer;
             min-width: 70px;
-            background-image: none; /* Ensure no arrow */
+            background-image: none; 
         }
 
         select:focus {
@@ -191,7 +194,6 @@
             box-shadow: 0 0 8px rgba(245, 0, 87, 0.3);
         }
 
-        /* Specific widths */
         .wide-select { width: 150px; }
         .narrow-select { width: 80px; }
 
@@ -291,12 +293,6 @@
 </head>
 <body>
 
-    <div id="visual-container">
-        <div id="beat-counter">STOPPED</div>
-        <div class="track"></div>
-        <div id="pendulum-ball"></div>
-    </div>
-
     <div class="container">
         <h1>Gap Click Trainer</h1>
 
@@ -362,6 +358,12 @@
             </div>
         </div>
 
+        <div id="visual-container">
+            <div id="beat-counter">STOPPED</div>
+            <div class="track"></div>
+            <div id="pendulum-ball"></div>
+        </div>
+
         <button id="play-btn">START</button>
         <div class="status-text" id="status-text">Ready to begin...</div>
     </div>
@@ -389,13 +391,12 @@
     const bpmSlider = document.getElementById('bpm-slider');
     const statusText = document.getElementById('status-text');
     
-    // Inputs (Now Selects)
+    // Inputs
     const bpmSelect = document.getElementById('bpm-select');
     const sigNumSelect = document.getElementById('sig-num');
     const barsPlaySelect = document.getElementById('bars-play');
     const barsGapSelect = document.getElementById('bars-gap');
 
-    // --- HELPER: Populate Select Options ---
     function populateSelect(element, start, end, selected) {
         for (let i = start; i <= end; i++) {
             let option = document.createElement("option");
@@ -406,13 +407,11 @@
         }
     }
 
-    // Populate Dynamic Dropdowns on Load
-    populateSelect(bpmSelect, 30, 300, 120); // Tempo 30-300
-    populateSelect(sigNumSelect, 1, 32, 4); // Time Sig 1-32
-    populateSelect(barsPlaySelect, 1, 64, 1); // Play Bars 1-64
-    populateSelect(barsGapSelect, 0, 64, 1); // Gap Bars 0-64
+    populateSelect(bpmSelect, 30, 300, 120); 
+    populateSelect(sigNumSelect, 1, 32, 4); 
+    populateSelect(barsPlaySelect, 1, 64, 1); 
+    populateSelect(barsGapSelect, 0, 64, 1); 
 
-    // --- SLIDER GRADIENT LOGIC ---
     function updateSliderColor() {
         const min = parseInt(bpmSlider.min);
         const max = parseInt(bpmSlider.max);
@@ -421,7 +420,8 @@
         bpmSlider.style.background = `linear-gradient(to right, #4CAF50 0%, #4CAF50 ${percent}%, #F50057 ${percent}%, #F50057 100%)`;
     }
 
-    // Sync Slider <-> Select
+    updateSliderColor();
+
     bpmSlider.addEventListener('input', (e) => {
         bpmSelect.value = e.target.value;
         updateSliderColor();
@@ -431,11 +431,7 @@
         bpmSlider.value = e.target.value;
         updateSliderColor();
     });
-    
-    // Initialize slider color
-    updateSliderColor();
 
-    // --- TAP TEMPO LOGIC ---
     let tapTimes = [];
     tapBtn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -466,8 +462,6 @@
         if (isPlaying) stop();
         else start();
     });
-
-    // --- Core Audio Logic ---
 
     function nextNote() {
         const bpm = parseFloat(bpmSelect.value);
@@ -536,7 +530,6 @@
         timerID = window.setTimeout(scheduler, lookahead);
     }
 
-    // --- Visualizer ---
     function draw() {
         if (!isPlaying) return;
 
@@ -608,8 +601,6 @@
 
         requestAnimationFrame(draw);
     }
-
-    // --- Start / Stop ---
 
     function start() {
         if (audioCtx == null) {
