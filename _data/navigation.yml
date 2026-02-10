@@ -7,7 +7,7 @@ main:
     url: /publications/
     # url: https://scholar.google.com/citations?user=F8ypNIcAAAAJ&hl=en&authuser=1
 
-  - title: "Metronome"
+  - title: "Music Related Tools"
     url: /metronome/
 
   # - title: "Talks"
