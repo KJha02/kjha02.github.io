@@ -142,26 +142,47 @@
   padding: 14px;
 }
 
+.rl-algorithm-guide,
 .rl-api-guide {
   display: grid;
   gap: 8px;
   padding: 12px;
-  border: 1px solid #dce7f7;
   border-radius: 6px;
+}
+
+.rl-algorithm-guide {
+  border: 1px solid #d9e4d7;
+  background: #f6fbf5;
+}
+
+.rl-api-guide {
+  border: 1px solid #dce7f7;
   background: #f7faff;
 }
 
+.rl-algorithm-guide h4,
 .rl-api-guide h4 {
   margin: 0;
   font-size: 14px;
   letter-spacing: 0;
 }
 
+.rl-algorithm-guide p,
 .rl-api-guide p {
   margin: 0;
   color: var(--rl-muted);
   font-size: 13px;
   line-height: 1.45;
+}
+
+.rl-algorithm-guide pre {
+  overflow: auto;
+  margin: 0;
+  padding: 10px;
+  border-radius: 6px;
+  background: #142018;
+  color: #e1f5df;
+  font: 13px/1.45 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
 }
 
 .rl-api-guide code {

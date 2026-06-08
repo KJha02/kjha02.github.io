@@ -19,7 +19,9 @@
     q: {
       label: "Q-learning update",
       starter: [
-        "// TODO: compute the TD target and update values[action].",
+        "// TODO: implement the Q-learning equation shown above.",
+        "// target = reward if done, otherwise reward + gamma * max(nextValues)",
+        "// Q(s,a) <- Q(s,a) + alpha * (target - Q(s,a))",
         "// Available: agent, transition, goal, state, action, reward,",
         "// nextState, done, values, nextValues, max().",
         "agent.warnOnce(\"TODO: qLearningUpdate is still a no-op.\");",
@@ -32,8 +34,9 @@
     dyna: {
       label: "Dyna-Q planning update",
       starter: [
-        "// TODO: build a fake transition from this model prediction,",
-        "// then call qLearningUpdate(agent, fakeTransition).",
+        "// TODO: implement the planning step shown above.",
+        "// Recompute reward/done for the imagined transition, then reuse",
+        "// the exact same qLearningUpdate(agent, fakeTransition).",
         "// Available: agent, state, action, prediction, currentGoal,",
         "// qLearningUpdate().",
         "agent.warnOnce(\"TODO: Dyna-Q planning updates are still missing.\");",
@@ -53,8 +56,9 @@
     her: {
       label: "HER relabeling update",
       starter: [
-        "// TODO: relabel every transition as if finalAchievedGoal",
-        "// had been the intended goal, then call qLearningUpdate().",
+        "// TODO: implement the HER relabeling loop shown above.",
+        "// Pretend finalAchievedGoal was the goal for each transition,",
+        "// recompute reward/done, then call qLearningUpdate().",
         "// Available: agent, episode, finalAchievedGoal, qLearningUpdate().",
         "agent.warnOnce(\"TODO: HER relabeling updates are still missing.\");",
       ].join("\n"),
@@ -69,6 +73,42 @@
         "  qLearningUpdate(agent, relabeledTransition, finalAchievedGoal);",
         "}",
       ].join("\n"),
+    },
+  };
+
+  const ALGORITHM_GUIDES = {
+    q: {
+      title: "Equation to implement",
+      summary: "For the experienced transition (s, a, r, s'), move Q(s,a) toward the one-step bootstrapped target.",
+      steps: [
+        "target = r                         if done",
+        "target = r + gamma * max_a' Q(s',a') otherwise",
+        "Q(s,a) = Q(s,a) + alpha * (target - Q(s,a))",
+      ],
+      codeHint: "In code, Q(s,a) is values[action], max_a' Q(s',a') is max(nextValues), alpha is agent.alpha, and gamma is agent.gamma.",
+    },
+    dyna: {
+      title: "Algorithm to implement",
+      summary: "Dyna-Q does normal Q-learning on real experience, stores the transition model, then samples that model for extra imagined updates.",
+      steps: [
+        "sample a stored (state, action) -> prediction.nextState",
+        "success = prediction.nextState === currentGoal",
+        "fakeTransition = { state, action, reward, nextState, done }",
+        "qLearningUpdate(agent, fakeTransition)",
+      ],
+      codeHint: "Use reward 1 and done true on success; otherwise reward -0.01 and done false, matching the gridworld.",
+    },
+    her: {
+      title: "Algorithm to implement",
+      summary: "HER reinterprets a rollout by asking what goal the agent actually achieved, then trains the goal-conditioned Q-table on that relabeled objective.",
+      steps: [
+        "finalAchievedGoal = last transition's achieved state",
+        "for each transition in episode:",
+        "  success = transition.nextState === finalAchievedGoal",
+        "  relabeled reward/done = success ? (1, true) : (-0.01, false)",
+        "  qLearningUpdate(agent, relabeledTransition, finalAchievedGoal)",
+      ],
+      codeHint: "The third argument to qLearningUpdate is the goal key, so HER writes into Q(state, action | goal).",
     },
   };
 
@@ -519,6 +559,7 @@
         "        <button class=\"rl-button\" data-action=\"starter\">Reset starter</button>",
         "      </div>",
         "    </div>",
+        "    <div class=\"rl-algorithm-guide\" data-role=\"algorithm-guide\"></div>",
         "    <div class=\"rl-api-guide\" data-role=\"api-guide\"></div>",
         "    <textarea class=\"rl-editor\" spellcheck=\"false\" data-role=\"editor\"></textarea>",
         "  </section>",
@@ -576,6 +617,7 @@
       this.chartCtx = this.chartCanvas.getContext("2d");
       this.statusEl = this.root.querySelector("[data-role='status']");
       this.logEl = this.root.querySelector("[data-role='log']");
+      this.algorithmGuide = this.root.querySelector("[data-role='algorithm-guide']");
       this.apiGuide = this.root.querySelector("[data-role='api-guide']");
       this.editor = this.root.querySelector("[data-role='editor']");
       this.editorKind = this.root.querySelector("[data-role='editor-kind']");
@@ -588,6 +630,7 @@
       this.heatmap = this.root.querySelector("[data-role='heatmap']");
       this.resetOnEdit = this.root.querySelector("[data-role='reset-on-edit']");
       this.readouts = this.root.querySelector("[data-role='readouts']");
+      this.updateAlgorithmGuide();
       this.updateApiGuide();
       this.editor.value = this.currentBody();
     }
@@ -630,6 +673,7 @@
             this.log("Keeping last valid " + SNIPPETS[this.selectedEditorKind].label + ": " + error.message);
           }
           this.selectedEditorKind = this.editorKind.value;
+          this.updateAlgorithmGuide();
           this.updateApiGuide();
           this.editor.value = this.currentBody();
         });
@@ -703,6 +747,16 @@
 
     currentBody() {
       return this.profile[this.selectedEditorKind + "Body"];
+    }
+
+    updateAlgorithmGuide() {
+      const guide = ALGORITHM_GUIDES[this.selectedEditorKind];
+      this.algorithmGuide.innerHTML = [
+        "<h4>" + guide.title + "</h4>",
+        "<p>" + guide.summary + "</p>",
+        "<pre>" + guide.steps.join("\n") + "</pre>",
+        "<p>" + guide.codeHint + "</p>",
+      ].join("");
     }
 
     updateApiGuide() {
