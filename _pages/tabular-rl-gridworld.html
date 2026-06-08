@@ -1,0 +1,72 @@
+---
+layout: default
+permalink: /blog/tabular-rl-gridworld/
+title: "Interactive Tabular RL in Four Rooms"
+author_profile: false
+---
+
+<link rel="stylesheet" href="/assets/css/rl-blog.css">
+
+<main class="rl-article">
+  <header class="rl-hero">
+    <p class="rl-kicker"><a href="/blog/">Blog</a></p>
+    <h1>Interactive tabular RL in four rooms</h1>
+    <p>
+      Fill in the update rules for model-free Q-learning, Dyna-Q, and hindsight experience replay.
+      Then watch how the agent's values, policy, and learning curve change inside a classic four-rooms gridworld.
+    </p>
+  </header>
+
+  <section class="rl-intro">
+    <p>
+      The world is an 11 by 11 four-rooms task: two long interior walls split the map into four regions, and each wall segment has a single doorway.
+      The agent starts in the upper-left room and tries to reach a goal in the lower-right room. The fastest policies have to discover the doorways and then propagate value backward through them.
+    </p>
+  </section>
+
+  <section class="rl-walkthrough-section">
+    <div class="rl-section-copy">
+      <p class="rl-kicker">Part 1</p>
+      <h2>Model-free Q-learning</h2>
+      <p>
+        Start with the one-step temporal-difference update. At first, the value heatmap is mostly flat. As successful episodes occur, positive value should spread backward from the goal through the doorway sequence. The greedy-policy view should eventually point toward a route through the four rooms.
+      </p>
+    </div>
+    <div class="rl-workbench" data-mode="q" data-title="Q-learning workbook"></div>
+  </section>
+
+  <section class="rl-walkthrough-section">
+    <div class="rl-section-copy">
+      <p class="rl-kicker">Part 2</p>
+      <h2>Dyna-Q planning</h2>
+      <p>
+        Dyna-Q stores a tiny tabular model of experienced transitions, then replays imagined transitions after each real step. With planning turned up, learning should become noticeably steeper because the agent can update old states without physically revisiting them.
+      </p>
+    </div>
+    <div class="rl-workbench" data-mode="dyna" data-title="Dyna-Q workbook"></div>
+  </section>
+
+  <section class="rl-walkthrough-section">
+    <div class="rl-section-copy">
+      <p class="rl-kicker">Part 3</p>
+      <h2>Hindsight experience replay</h2>
+      <p>
+        HER treats the state actually reached at the end of an episode as if it had been the intended goal. In the visit heatmap, failed wandering can still become useful training data; in the value view, the agent learns a goal-conditioned table for multiple possible outcomes.
+      </p>
+    </div>
+    <div class="rl-workbench" data-mode="her" data-title="HER workbook"></div>
+  </section>
+
+  <section class="rl-walkthrough-section rl-final-lab">
+    <div class="rl-section-copy">
+      <p class="rl-kicker">Comparison lab</p>
+      <h2>Compare and customize</h2>
+      <p>
+        Switch between all three algorithms, tune exploration and planning, move the start or goal, and edit the four-rooms walls. The chart keeps separate curves for each method so you can compare how quickly each one adapts under the same arrangement.
+      </p>
+    </div>
+    <div class="rl-workbench" data-mode="compare" data-title="Comparison lab"></div>
+  </section>
+</main>
+
+<script src="/assets/js/rl-blog.js" defer></script>

@@ -10,6 +10,9 @@ main:
   - title: "Music Related Tools"
     url: /metronome/
 
+  - title: "Blog"
+    url: /blog/
+
   # - title: "Talks"
   #   url: /talks/    
 
