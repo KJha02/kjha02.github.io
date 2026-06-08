@@ -1,9 +1,11 @@
 ---
-layout: single
+layout: archive
 permalink: /blog/
 title: "Blog"
-author_profile: false
+author_profile: true
 ---
+
+{% include base_path %}
 
 <section class="blog-index">
   <article class="archive__item">

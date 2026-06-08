@@ -22,6 +22,26 @@ author_profile: false
       The world is an 11 by 11 four-rooms task: two long interior walls split the map into four regions, and each wall segment has a single doorway.
       The agent starts in the upper-left room and tries to reach a goal in the lower-right room. The fastest policies have to discover the doorways and then propagate value backward through them.
     </p>
+    <div class="rl-takeaway-grid">
+      <div>
+        <h2>Why this example?</h2>
+        <p>
+          Four rooms is just large enough to make exploration and representation visible. A good value function has structure: states near useful doorways become valuable before the whole map looks solved.
+        </p>
+      </div>
+      <div>
+        <h2>What to watch</h2>
+        <p>
+          Use the value heatmap for learned expectations, the policy arrows for the greedy route, visits for exploration coverage, and the return chart for learning speed. A working update should make all four tell the same story.
+        </p>
+      </div>
+      <div>
+        <h2>The comparison</h2>
+        <p>
+          Q-learning learns only from real steps, Dyna-Q also learns from imagined model rollouts, and HER turns failed trajectories into useful goal-conditioned practice.
+        </p>
+      </div>
+    </div>
   </section>
 
   <section class="rl-walkthrough-section">
@@ -30,6 +50,9 @@ author_profile: false
       <h2>Model-free Q-learning</h2>
       <p>
         Start with the one-step temporal-difference update. At first, the value heatmap is mostly flat. As successful episodes occur, positive value should spread backward from the goal through the doorway sequence. The greedy-policy view should eventually point toward a route through the four rooms.
+      </p>
+      <p>
+        Big idea: model-free learning is simple and honest. It only changes a value after the agent actually experiences a transition, so credit assignment moves one step at a time.
       </p>
     </div>
     <div class="rl-workbench" data-mode="q" data-title="Q-learning workbook"></div>
@@ -42,6 +65,9 @@ author_profile: false
       <p>
         Dyna-Q stores a tiny tabular model of experienced transitions, then replays imagined transitions after each real step. With planning turned up, learning should become noticeably steeper because the agent can update old states without physically revisiting them.
       </p>
+      <p>
+        Big idea: if the world dynamics are reusable, memory can become practice. After the agent has seen a doorway once, planning can keep propagating that information through previously visited states.
+      </p>
     </div>
     <div class="rl-workbench" data-mode="dyna" data-title="Dyna-Q workbook"></div>
   </section>
@@ -53,6 +79,9 @@ author_profile: false
       <p>
         HER treats the state actually reached at the end of an episode as if it had been the intended goal. In the visit heatmap, failed wandering can still become useful training data; in the value view, the agent learns a goal-conditioned table for multiple possible outcomes.
       </p>
+      <p>
+        Big idea: failure can still be data. HER asks, "What goal did this trajectory accidentally solve?" and uses that relabeled goal to train a more flexible representation.
+      </p>
     </div>
     <div class="rl-workbench" data-mode="her" data-title="HER workbook"></div>
   </section>
@@ -63,6 +92,9 @@ author_profile: false
       <h2>Compare and customize</h2>
       <p>
         Switch between all three algorithms, tune exploration and planning, move the start or goal, and edit the four-rooms walls. The chart keeps separate curves for each method so you can compare how quickly each one adapts under the same arrangement.
+      </p>
+      <p>
+        Try training each method for the same number of episodes, then shift the goal. Q-learning should need fresh real experience, Dyna-Q can reuse its transition model, and HER should expose how goal-conditioned values differ from a single-goal value table.
       </p>
     </div>
     <div class="rl-workbench" data-mode="compare" data-title="Comparison lab"></div>

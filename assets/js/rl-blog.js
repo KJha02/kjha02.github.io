@@ -72,6 +72,33 @@
     },
   };
 
+  const API_GUIDES = {
+    q: {
+      title: "What your Q-learning code receives",
+      lines: [
+        "<code>transition</code>: <code>{ state: string, action: number, reward: number, nextState: string, done: boolean }</code>.",
+        "<code>values</code> is the mutable Q array for <code>state</code>; <code>nextValues</code> is the Q array for <code>nextState</code>.",
+        "Expected answer: compute a TD target, then update <code>values[action]</code> in place using <code>agent.alpha</code> and <code>agent.gamma</code>.",
+      ],
+    },
+    dyna: {
+      title: "What your Dyna-Q planning code receives",
+      lines: [
+        "<code>state</code> and <code>action</code> identify a previously observed transition; <code>prediction.nextState</code> is the learned model's next state.",
+        "<code>currentGoal</code> is a state key like <code>\"9,9\"</code>. Use it to recompute reward and terminal status for imagined transitions.",
+        "Expected answer: build <code>fakeTransition</code>, then call <code>qLearningUpdate(agent, fakeTransition)</code>.",
+      ],
+    },
+    her: {
+      title: "What your HER code receives",
+      lines: [
+        "<code>episode</code> is an array of transitions from one rollout. Each transition has <code>state</code>, <code>action</code>, <code>nextState</code>, <code>achieved</code>, <code>reward</code>, and <code>done</code>.",
+        "<code>finalAchievedGoal</code> is the state the agent actually reached at the end of the rollout.",
+        "Expected answer: loop over <code>episode</code>, recompute reward/done as if <code>finalAchievedGoal</code> were the goal, then call <code>qLearningUpdate(agent, relabeledTransition, finalAchievedGoal)</code>.",
+      ],
+    },
+  };
+
   function zeros() {
     return Array(ACTION_COUNT).fill(0);
   }
@@ -492,6 +519,7 @@
         "        <button class=\"rl-button\" data-action=\"starter\">Reset starter</button>",
         "      </div>",
         "    </div>",
+        "    <div class=\"rl-api-guide\" data-role=\"api-guide\"></div>",
         "    <textarea class=\"rl-editor\" spellcheck=\"false\" data-role=\"editor\"></textarea>",
         "  </section>",
         "  <div class=\"rl-workbench-layout\">",
@@ -548,6 +576,7 @@
       this.chartCtx = this.chartCanvas.getContext("2d");
       this.statusEl = this.root.querySelector("[data-role='status']");
       this.logEl = this.root.querySelector("[data-role='log']");
+      this.apiGuide = this.root.querySelector("[data-role='api-guide']");
       this.editor = this.root.querySelector("[data-role='editor']");
       this.editorKind = this.root.querySelector("[data-role='editor-kind']");
       this.algorithm = this.root.querySelector("[data-role='algorithm']");
@@ -559,6 +588,7 @@
       this.heatmap = this.root.querySelector("[data-role='heatmap']");
       this.resetOnEdit = this.root.querySelector("[data-role='reset-on-edit']");
       this.readouts = this.root.querySelector("[data-role='readouts']");
+      this.updateApiGuide();
       this.editor.value = this.currentBody();
     }
 
@@ -600,6 +630,7 @@
             this.log("Keeping last valid " + SNIPPETS[this.selectedEditorKind].label + ": " + error.message);
           }
           this.selectedEditorKind = this.editorKind.value;
+          this.updateApiGuide();
           this.editor.value = this.currentBody();
         });
       }
@@ -672,6 +703,14 @@
 
     currentBody() {
       return this.profile[this.selectedEditorKind + "Body"];
+    }
+
+    updateApiGuide() {
+      const guide = API_GUIDES[this.selectedEditorKind];
+      this.apiGuide.innerHTML = [
+        "<h4>" + guide.title + "</h4>",
+        guide.lines.map((line) => "<p>" + line + "</p>").join(""),
+      ].join("");
     }
 
     useSnippet(which) {
@@ -1042,27 +1081,29 @@
       this.chartCtx.stroke();
 
       if (this.mode === "compare") {
-        const allValues = ALGORITHMS.flatMap((algo) => this.compareReturns[algo.key].slice(-120));
+        const allValues = ALGORITHMS.flatMap((algo) => this.compareReturns[algo.key]);
         const lo = Math.min(...allValues, -1);
         const hi = Math.max(...allValues, 1);
-        ALGORITHMS.forEach((algo) => this.drawSeries(this.compareReturns[algo.key], algo.color, lo, hi));
+        const maxEpisodes = Math.max(2, ...ALGORITHMS.map((algo) => this.compareReturns[algo.key].length));
+        ALGORITHMS.forEach((algo) => this.drawSeries(this.compareReturns[algo.key], algo.color, lo, hi, maxEpisodes));
       } else {
         this.drawSeries(this.returns, "#246bfe");
       }
     }
 
-    drawSeries(series, color, sharedLo = null, sharedHi = null) {
+    drawSeries(series, color, sharedLo = null, sharedHi = null, sharedMaxEpisodes = null) {
       if (!series || series.length < 2) return;
       const w = this.chartCanvas.width;
       const h = this.chartCanvas.height;
-      const data = series.slice(-120);
+      const data = series;
       const lo = sharedLo ?? Math.min(...data, -1);
       const hi = sharedHi ?? Math.max(...data, 1);
+      const maxEpisodes = sharedMaxEpisodes ?? Math.max(2, data.length);
       this.chartCtx.strokeStyle = color;
       this.chartCtx.lineWidth = 2;
       this.chartCtx.beginPath();
       data.forEach((value, i) => {
-        const x = 36 + (i / Math.max(1, data.length - 1)) * (w - 50);
+        const x = 36 + (i / Math.max(1, maxEpisodes - 1)) * (w - 50);
         const y = 10 + ((hi - value) / (hi - lo || 1)) * (h - 34);
         if (i === 0) this.chartCtx.moveTo(x, y);
         else this.chartCtx.lineTo(x, y);
