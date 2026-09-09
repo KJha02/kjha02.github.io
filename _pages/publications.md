@@ -12,5 +12,7 @@ author_profile: true
 {% include base_path %}
 
 {% for post in site.publications reversed %}
-  {% include archive-single.html %}
+  {% unless post.hidden %}
+    {% include archive-single.html %}
+  {% endunless %}
 {% endfor %}
