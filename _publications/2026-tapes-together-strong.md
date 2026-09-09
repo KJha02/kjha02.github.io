@@ -17,6 +17,8 @@ Can self-interested, self-improving, and self-replicating agents learn to cooper
 
 [Kunal Jha](https://kjha02.github.io/), [Francesco Cicala](https://scholar.google.com/citations?user=UbhZqPoAAAAJ&hl=it), [Blaise Agüera y Arcas](https://www.blaiseaguera.com), [Blake Aaron Richards](https://sites.google.com/mila.quebec/linc-lab/home?pli=1&authuser=0), [Natasha Jaques](https://natashajaques.ai)\*, [Max Kleiman-Weiner](http://faculty.washington.edu/maxkw/)\*, [Eyvind Niklasson](https://eyvind.me)\*
 
+*Work done with the [Google Paradigms of Intelligence team](https://github.com/paradigms-of-intelligence).*
+
 ### Paper coming soon · Code coming soon
 
 ## Where replication meets cooperation
