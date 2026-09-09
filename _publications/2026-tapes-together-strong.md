@@ -15,17 +15,17 @@ Can self-interested, self-improving, and self-replicating agents learn to cooper
   <p><em>A computational soup evolving over time. The left panel shows the population's available energy; the right shows random programs giving way to self-replicating tapes while stealing remains suppressed.</em></p>
 </div>
 
-# Tapes Together Strong: The Co-evolution of Computation and Cooperation
-
-[Kunal Jha](https://kjha02.github.io/), Francesco Cicala, Blaise Agüera y Arcas, Blake Aaron Richards, [Natasha Jaques](https://natashajaques.ai)\*, [Max Kleiman-Weiner](http://faculty.washington.edu/maxkw/)\*, Eyvind Niklasson\*
+[Kunal Jha](https://kjha02.github.io/), [Francesco Cicala](https://scholar.google.com/citations?user=UbhZqPoAAAAJ&hl=it), [Blaise Agüera y Arcas](https://www.blaiseaguera.com), [Blake Aaron Richards](https://sites.google.com/mila.quebec/linc-lab/home?pli=1&authuser=0), [Natasha Jaques](https://natashajaques.ai)\*, [Max Kleiman-Weiner](http://faculty.washington.edu/maxkw/)\*, [Eyvind Niklasson](https://eyvind.me)\*
 
 ### Paper coming soon · Code coming soon
 
-## Why ask how cooperation begins?
+## Where replication meets cooperation
 
-Artificial Life asks how self-replicating systems can emerge from simple computational rules, but typically not how cooperation emerges alongside them. Game theory asks how cooperation evolves, but usually begins with agents, strategies, and rules for reproduction already in place.
+Two research traditions study different pieces of the same puzzle. Artificial Life asks how self-replicating systems can emerge from simple computational rules, but has typically focused on competition, ecological complexity, or external tasks rather than the emergence of general-sum social dilemmas. Evolutionary game theory asks how cooperation can survive, but usually begins with agents, strategies, and rules for reproduction already in place. The game happens first; evolution updates the population afterward.
 
-We introduce **Autopoietic Game Theory** to bring these questions together. Instead of assigning agents fixed strategies or giving them a built-in replication command, we let social behavior, reproduction, and the computational cost of both evolve simultaneously.
+That separation leaves open a basic question: what happens when an agent's social choices change the very resources it needs to act and reproduce? And what if both its strategy and its means of replication must emerge from scratch?
+
+We introduce **Autopoietic Game Theory** to bring these questions together. Instead of assigning agents fixed strategies or a built-in replication command, we make computation, interaction, and reproduction compete for the same finite resource. Social strategy and replication evolve simultaneously, allowing us to study whether cooperation can emerge from the same low-level process that first produces the agents themselves.
 
 ## A world where every instruction has a cost
 
@@ -93,8 +93,10 @@ Changing only the timing of replication can reverse the evolutionary outcome. Wh
 
 **Cooperation can emerge because it preserves the computation needed to survive and reproduce.** When agents can evolve not only what they do, but also how they copy themselves and spend computational resources, selfish behavior can undermine its own ability to spread.
 
-This connects questions across game theory, biology, Artificial Life, and AI. As we build increasingly open-ended systems whose agents can improve, copy themselves, and modify their environment, access to compute may shape which social behaviors survive. Our results suggest a simple design principle: let computational capacity co-evolve with social strategy and replication, giving cooperation a path to support more capable collectives.
+This connects questions across game theory, biology, Artificial Life, and AI. Agentic systems can already write and revise code, generate new versions of their own components, and participate in automated improvement loops. As these systems become more autonomous and population-based, we need ways for cooperation and coexistence to remain stable even while the agents themselves change.
 
-Our agents are not language models. They are deliberately minimal programs that act, reproduce, and rewrite the world they inhabit - a testbed for studying how cooperation might emerge among open-ended agents.
+Our results show one simple route in a minimal world: couple an agent's access to compute with the consequences of its social behavior, then let social strategy and replication evolve together. Destructive behavior can deplete the computation it needs to spread, while cooperation preserves the resources that support reproduction and more complex collective behavior.
+
+Our agents are not language models. They are deliberately minimal programs that act, reproduce, and rewrite the world they inhabit. That makes them a useful testbed for exposing this mechanism without relying on language, prompting, or hand-designed social rules. We are excited to test whether these ideas can scale to richer learning agents that improve themselves, solve real tasks, and must coexist with other evolving agents.
 
 Interested in learning more? **The paper and code are coming soon.**
