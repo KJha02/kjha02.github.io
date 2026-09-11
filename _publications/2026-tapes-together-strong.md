@@ -5,7 +5,7 @@ permalink: /publication/tts
 excerpt: 'Can self-interested, self-improving, and self-replicating agents learn to cooperate? We show that when social behavior, computation, and reproduction share one energy budget, cooperation can evolve from scratch.'
 date: 2026-09-09
 venue: 'Preprint'
-hidden: true
+paperurl: 'https://arxiv.org/abs/2609.10817'
 ---
 
 Can self-interested, self-improving, and self-replicating agents learn to cooperate? In **Tapes Together Strong**, we show that they can. When social behavior, computation, and reproduction all draw on the same energy budget, cooperation can evolve from scratch.
@@ -19,7 +19,7 @@ Can self-interested, self-improving, and self-replicating agents learn to cooper
 
 *Work done with the [Google Paradigms of Intelligence team](https://github.com/paradigms-of-intelligence).*
 
-### Paper coming soon · Code coming soon
+### [Read the paper on arXiv](https://arxiv.org/abs/2609.10817) · Code coming soon
 
 ## Where replication meets cooperation
 
@@ -101,4 +101,4 @@ Our results show one simple route in a minimal world: couple an agent's access t
 
 Our agents are not language models. They are deliberately minimal programs that act, reproduce, and rewrite the world they inhabit. That makes them a useful testbed for exposing this mechanism without relying on language, prompting, or hand-designed social rules. We are excited to test whether these ideas can scale to richer learning agents that improve themselves, solve real tasks, and must coexist with other evolving agents.
 
-Interested in learning more? **The paper and code are coming soon.**
+Interested in learning more? **[Read the paper on arXiv](https://arxiv.org/abs/2609.10817).** Code is coming soon.
