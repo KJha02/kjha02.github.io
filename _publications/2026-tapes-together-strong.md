@@ -29,7 +29,7 @@ That separation leaves open a basic question: what happens when an agent's socia
 
 We introduce **Autopoietic Game Theory** to bring these questions together. Instead of assigning agents fixed strategies or a built-in replication command, we make computation, interaction, and reproduction compete for the same finite resource. Social strategy and replication evolve simultaneously, allowing us to study whether cooperation can emerge from the same low-level process that first produces the agents themselves.
 
-## A world where every instruction has a cost
+## A world where every action has a cost
 
 We begin with a population of 16,384 programs, each made of 32 completely random bytes of Z80 machine code. Two programs pair up on a shared, cyclic memory tape. Each has its own CPU and energy reserve, but either can read and overwrite the shared code.
 
