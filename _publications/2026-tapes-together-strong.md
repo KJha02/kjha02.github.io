@@ -11,8 +11,8 @@ paperurl: 'https://arxiv.org/abs/2609.10817'
 Can self-interested, self-improving, and self-replicating agents learn to cooperate? In **Tapes Together Strong**, we show that they can. When social behavior, computation, and reproduction all draw on the same energy budget, cooperation can evolve from scratch.
 
 <div style="text-align: center; margin: 1.5em 0;">
-  <img src="/images/tts/computational-soup-evolution.gif" alt="A computational soup evolving from random Z80 programs into a population of cooperative self-replicators" style="width: 100%; height: auto;">
-  <p><em>A computational soup evolving over time. The left panel shows the population's available energy; the right shows random programs giving way to self-replicating tapes while stealing remains suppressed.</em></p>
+  <img src="/images/tts/computational-soup-evolution.gif" alt="Computational agents evolving from random Z80 programs into cooperative self-replicating Turing tapes" style="width: 100%; height: auto;">
+  <p><em>Computational agents evolving over time. The left panel shows the population's available energy; the right shows random programs giving way to self-replicating Turing tapes while stealing remains suppressed.</em></p>
 </div>
 
 [Kunal Jha](https://kjha02.github.io/), [Francesco Cicala](https://scholar.google.com/citations?user=UbhZqPoAAAAJ&hl=it), [Blaise Agüera y Arcas](https://www.blaiseaguera.com), [Blake Aaron Richards](https://sites.google.com/mila.quebec/linc-lab/home?pli=1&authuser=0), [Natasha Jaques](https://natashajaques.ai)\*, [Max Kleiman-Weiner](http://faculty.washington.edu/maxkw/)\*, [Eyvind Niklasson](https://eyvind.me)\*
