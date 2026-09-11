@@ -59,7 +59,7 @@ This is not just a side effect of mutations continually breaking STEAL. In mutat
 
 ## Local interaction turns inequality into structure
 
-When every program receives the same background energy, both randomly paired and spatial populations evolve self-replicating cooperators. Local interactions are still useful: they allow successful programs to cluster with related code, supporting more intricate and genetically cohesive replicators.
+When every program receives the same background energy, self-replicating cooperators evolve both when agents pair at random and when they interact only with immediate neighbors. Local interactions are still useful: they allow successful programs to cluster with related code, supporting more intricate and genetically cohesive replicators.
 
 The difference becomes dramatic when energy is distributed unequally. Well-mixed populations cannot rely on a predictable influx of compute and degrade into simpler, lower-energy programs. On a grid, successful code can first take hold in energy-rich regions, grow more robust, and then spread into harsher parts of the environment.
 
