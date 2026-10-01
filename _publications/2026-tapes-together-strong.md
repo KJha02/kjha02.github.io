@@ -4,7 +4,7 @@ collection: publications
 permalink: /publication/tts
 excerpt: 'Can self-interested, self-improving, and self-replicating agents learn to cooperate? We show that when social behavior, computation, and reproduction share one energy budget, cooperation can evolve from scratch.'
 date: 2026-09-09
-venue: 'Preprint'
+venue: 'Accepted to NeurIPS 2026'
 paperurl: 'https://arxiv.org/abs/2609.10817'
 ---
 
