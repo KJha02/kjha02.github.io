@@ -8,7 +8,7 @@ venue: 'Preprint. In-review'
 paperurl: 'https://arxiv.org/abs/2609.38516'
 ---
 
-[Kunal Jha](https://kjha02.github.io/), [Max Kleiman-Weiner](https://faculty.washington.edu/maxkw/), [Natasha Jaques](https://natashajaques.ai/)
+[Kunal Jha](https://kjha02.github.io/), [Max Kleiman-Weiner](https://faculty.washington.edu/maxkw/)\*, [Natasha Jaques](https://natashajaques.ai/)\*
 
 **Preprint. In-review**
 
